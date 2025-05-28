@@ -1,0 +1,23 @@
+---
+- name: Deploy app
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install Docker
+      package:
+        name: docker
+        state: present
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: true
+    - name: Copy docker-compose file
+      copy:
+        src: ../docker-compose.yml
+        dest: /home/ec2-user/app/docker-compose.yml
+    - name: Run docker-compose
+      shell: |
+        cd /home/ec2-user/app
+        docker-compose down
+        docker-compose up -d
