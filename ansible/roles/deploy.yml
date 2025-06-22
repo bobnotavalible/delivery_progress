@@ -2,19 +2,19 @@
   become: yes
   tasks:
     - name: Load backend image
-      shell: docker load -i /tmp/backend.tar
+      shell: podman load -i /tmp/backend.tar
 
     - name: Stop old backend
-      shell: docker stop backend || true && docker rm backend || true
+      shell: podman stop backend || true && podman rm backend || true
 
     - name: Run backend container
-      shell: docker run -d --name backend -p 5000:5000 backend:latest
+      shell: podman run -d --name backend -p 5000:5000 backend:latest
 
     - name: Load frontend image
-      shell: docker load -i /tmp/frontend.tar
+      shell: podman load -i /tmp/frontend.tar
 
     - name: Stop old frontend
-      shell: docker stop frontend || true && docker rm frontend || true
+      shell: podman stop frontend || true && podman rm frontend || true
 
     - name: Run frontend container
-      shell: docker run -d --name frontend -p 80:80 frontend:latest
+      shell: podman run -d --name frontend -p 80:80 frontend:latest
