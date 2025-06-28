@@ -20,6 +20,7 @@ pipeline {
     stage('Backend: Build & Save') {
       steps {
         dir('backend') {
+          sh 'rm -f backend.tar'
           sh "podman build -t ${BACKEND_IMAGE} ."
         }
         sh "podman save ${BACKEND_IMAGE} -o backend.tar"
@@ -28,6 +29,7 @@ pipeline {
     stage('Frontend: Build & Save') {
       steps {
         dir('frontend') {
+          sh 'rm -f backend.tar'
           sh "podman build -t ${FRONTEND_IMAGE} ."
         }
         sh "podman save ${FRONTEND_IMAGE} -o frontend.tar"
