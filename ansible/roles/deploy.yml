@@ -1,11 +1,6 @@
 - hosts: target
   become: yes
   tasks:
-    - name: Clone repo from GitHub
-      git:
-        repo: 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
-        dest: /home/ec2-user/project
-        version: main
         
     - name: Load backend image
       shell: podman load -i /tmp/backend.tar
