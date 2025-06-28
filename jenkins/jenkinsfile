@@ -9,6 +9,14 @@ pipeline {
   }
 
   stages {
+    stage('Checkout from GitHub') {
+      steps {
+        // Клонирует репозиторий, где лежит Jenkinsfile
+        checkout scm
+        // Если нужно взять ещё что-то из другого репозитория:
+        // git url: 'https://github.com/username/other-repo.git', branch: 'main'
+      }
+    }
     stage('Backend: Build & Save') {
       steps {
         dir('backend') {
