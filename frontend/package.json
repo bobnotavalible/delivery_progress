@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "echo Hello from frontend && sleep 3600"
+    "start": "echo Hello from frontend && sleep 3600",
+    "build": "echo Build step placeholder"
   }
 }
