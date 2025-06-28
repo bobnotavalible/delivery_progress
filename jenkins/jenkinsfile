@@ -19,9 +19,7 @@ pipeline {
     }
     stage('Copy Images to Target1') {
       steps {
-        sh '''
-          scp -o StrictHostKeyChecking=no backend.tar frontend.tar ec2-user@172.31.90.185:/tmp/
-        '''
+        sh scp -o StrictHostKeyChecking=no backend.tar frontend.tar ec2-user@172.31.90.185:/tmp/
       }
     }
     stage('Backend: Build & Save') {
