@@ -51,6 +51,7 @@ pipeline {
     }
     stage('Deploy with Ansible') {
       steps {
+        sh "export PATH=$PATH:/usr/local/bin:/usr/bin:/var/lib/jenkins/.local/bin"
         sh "ansible-playbook ansible/deploy.yml -i ansible/inventory"
       }
     }
