@@ -17,6 +17,14 @@ pipeline {
         // git url: 'https://github.com/username/other-repo.git', branch: 'main'
       }
     }
+    stage('Clean Podman Temp') {
+      steps {
+        sh '''
+          rm -rf /tmp/storage-run-991/containers
+          rm -rf /tmp/storage-run-991/libpod/tmp
+        '''
+      }
+    }
     stage('Backend: Build & Save') {
       steps {
         dir('backend') {      
