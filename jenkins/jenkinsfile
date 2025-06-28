@@ -17,6 +17,13 @@ pipeline {
         // git url: 'https://github.com/username/other-repo.git', branch: 'main'
       }
     }
+    stage('Copy Images to Target1') {
+      steps {
+        sh '''
+          scp -o StrictHostKeyChecking=no backend.tar frontend.tar ec2-user@172.31.90.185:/tmp/
+        '''
+      }
+    }
     stage('Backend: Build & Save') {
       steps {
         dir('backend') {      
