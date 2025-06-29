@@ -32,7 +32,7 @@ pipeline {
           export PATH=$PATH:$HOME/.local/bin
           export XDG_RUNTIME_DIR=/run/user/$(id -u)
           '''
-          sh "podman build -t ${BACKEND_IMAGE} ."
+          sh "podman --cgroup-manager=cgroupfs build -t ${BACKEND_IMAGE} ."
         }
         sh 'rm -f backend.tar'
         sh "podman save ${BACKEND_IMAGE} -o backend.tar"
@@ -45,7 +45,7 @@ pipeline {
           export PATH=$PATH:$HOME/.local/bin
           export XDG_RUNTIME_DIR=/run/user/$(id -u)
           '''
-          sh "podman build -t ${FRONTEND_IMAGE} ."
+          sh "podman --cgroup-manager=cgroupfs build -t ${FRONTEND_IMAGE} ."
         }
         sh 'rm -f frontend.tar'
         sh "podman save ${FRONTEND_IMAGE} -o frontend.tar"
