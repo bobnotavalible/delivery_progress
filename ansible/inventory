@@ -1,2 +1,2 @@
 [target]
-target1 ansible_host=172.31.86.30 ansible_user=ec2-user
+target1 ansible_host=172.31.85.88 ansible_user=ec2-user
