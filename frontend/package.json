@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "echo Hello from frontend && sleep 3600",
+    "start": "node server.js",
     "build": "echo Build step placeholder"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
