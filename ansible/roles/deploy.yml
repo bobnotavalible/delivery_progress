@@ -5,67 +5,39 @@
     - name: Load backend image
       shell: podman load -i /tmp/backend.tar
       register: backend_load
-      changed_when: "'Loaded image' in backend_load.stdout"
+      changed_when: backend_load.rc == 0
       failed_when: backend_load.rc != 0
-      args:
-        warn: false
 
-    - name: List backend images
-      shell: podman images | grep backend
-      register: backend_images
-      changed_when: false
-      failed_when: false
+    - name: Show backend image load output
+      debug:
+        var: backend_load.stdout_lines
 
     - name: Stop and remove old backend container
       shell: |
         podman stop backend || true
         podman rm backend || true
-      changed_when: false
-      failed_when: false
-      args:
-        warn: false
 
     - name: Run backend container
       shell: podman run -d --name backend -p 5000:5000 backend:latest
       register: backend_run
       failed_when: backend_run.rc != 0
-      args:
-        warn: false
 
     - name: Load frontend image
       shell: podman load -i /tmp/frontend.tar
       register: frontend_load
-      changed_when: "'Loaded image' in frontend_load.stdout"
+      changed_when: frontend_load.rc == 0
       failed_when: frontend_load.rc != 0
-      args:
-        warn: false
 
-    - name: List frontend images
-      shell: podman images | grep frontend
-      register: frontend_images
-      changed_when: false
-      failed_when: false
+    - name: Show frontend image load output
+      debug:
+        var: frontend_load.stdout_lines
 
     - name: Stop and remove old frontend container
       shell: |
         podman stop frontend || true
         podman rm frontend || true
-      changed_when: false
-      failed_when: false
-      args:
-        warn: false
 
     - name: Run frontend container
       shell: podman run -d --name frontend -p 80:80 frontend:latest
       register: frontend_run
       failed_when: frontend_run.rc != 0
-      args:
-        warn: false
-
-    - name: Show backend image info
-      debug:
-        var: backend_images.stdout_lines
-
-    - name: Show frontend image info
-      debug:
-        var: frontend_images.stdout_lines
