@@ -3,7 +3,7 @@
   tasks:
         
     - name: Load backend image
-      shell: podman load -i /home/ec2-user/ci-temp/backend.tar
+      shell: podman load -i /tmp/backend.tar
 
     - name: Stop old backend
       shell: podman stop backend || true && podman rm backend || true
@@ -12,7 +12,7 @@
       shell: podman run -d --name backend -p 5000:5000 backend:latest
 
     - name: Load frontend image
-      shell: podman load -i /home/ec2-user/ci-temp/frontend.tar
+      shell: podman load -i /tmp/frontend.tar
 
     - name: Stop old frontend
       shell: podman stop frontend || true && podman rm frontend || true
