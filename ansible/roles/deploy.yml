@@ -37,6 +37,6 @@
         podman rm frontend || true
 
     - name: Run frontend container
-      shell: podman run -d --name frontend -p 80:80 frontend:latest
+      shell: podman run -d --name frontend -p 8080:80 frontend:latest
       register: frontend_run
       failed_when: frontend_run.rc != 0
