@@ -1,5 +1,4 @@
 - hosts: target
-  become: yes
   tasks:
 
     - name: Load backend image
