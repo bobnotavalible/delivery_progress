@@ -5,7 +5,7 @@ pipeline {
     BACKEND_IMAGE = 'your-podmanhub-username/backend'
     FRONTEND_IMAGE = 'your-podmanhub-username/frontend'
     SERVER_USER = 'ec2-user'
-    SERVER_IP = '172.31.86.30'
+    SERVER_IP = '172.31.85.88'
   }
 
   stages {
